@@ -35,7 +35,7 @@ export async function signUpUser(
     return { success: false, message: e.message || 'SignUp Failed' };
   }
 
-  redirect('/dashboard');
+  redirect('/login');
 }
 
 export async function signInUser(email: string, password: string) {
