@@ -27,7 +27,7 @@ import { signInUser } from '@/server/auth';
 import { toast } from 'sonner';
 import { useTransition } from 'react';
 import { Loader2 } from 'lucide-react';
-import { signInWithGoogle } from '@/lib/auth-client';
+import { sendVerificationEmail, signInWithGoogle } from '@/lib/auth-client';
 export function LoginForm({
   className,
   ...props
@@ -56,8 +56,14 @@ export function LoginForm({
 
       if (res?.success) {
         toast.success('Login Success');
+      } else if (res?.message === 'Email not verified') {
+        toast.error('Email not verified, please check your email.');
+        await sendVerificationEmail({
+          email,
+          callbackURL: '/dashboard',
+        });
       } else {
-        toast.error(res?.message || 'Login failed');
+        toast.error(`${res?.message}` || 'Login failed');
       }
     });
   };
@@ -127,11 +133,11 @@ export function LoginForm({
                   <Field>
                     <div className="flex items-center">
                       <FieldLabel htmlFor="password">Password</FieldLabel>
-                      <a
-                        href="#"
+                      <Link
+                        href="/login/forgot-account"
                         className="ml-auto text-sm underline-offset-4 hover:underline">
-                        Forgot your password?
-                      </a>
+                        Forgot your account?
+                      </Link>
                     </div>
                     <Input
                       id="password"

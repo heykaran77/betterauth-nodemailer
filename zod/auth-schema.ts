@@ -23,3 +23,22 @@ export const signUpSchema = z.object({
     .min(8, 'Password must be at least 8 characters long')
     .max(128, 'Password must be at most 128 characters long'),
 });
+
+export const forgotAccountSchema = z.object({
+  email: z.email(),
+});
+
+export const forgotPasswordEmailSchema = z.object({
+  email: z.email(),
+});
+
+export const forgotPasswordSchema = z.object({
+  password: z
+    .string()
+    .min(8, 'Password must be at least 8 characters long')
+    .max(128, 'Password must be at most 128 characters long'),
+  confirmPassword: z
+    .string()
+    .min(8, 'Password must be at least 8 characters long')
+    .max(128, 'Password must be at most 128 characters long'),
+});

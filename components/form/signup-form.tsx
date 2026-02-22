@@ -28,7 +28,7 @@ import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 import { useTransition } from 'react';
 import { Loader2 } from 'lucide-react';
-import { signInWithGoogle } from '@/lib/auth-client';
+import { sendVerificationEmail, signInWithGoogle } from '@/lib/auth-client';
 
 export function SignupForm({
   className,
@@ -60,7 +60,8 @@ export function SignupForm({
       const res = await signUpUser(name, email, password);
 
       if (res?.success) {
-        toast.success('Account created successfully');
+        // Email will be sent to the user
+        toast.success('Account created successfully.');
       } else {
         toast.error(res?.message || 'Signup failed');
       }

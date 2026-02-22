@@ -1,7 +1,9 @@
 'use server';
 
+import { db } from '@/db';
 import { auth } from '@/lib/auth';
 import { APIError } from 'better-auth';
+import { eq } from 'drizzle-orm';
 import { redirect } from 'next/navigation';
 
 export async function signUpUser(
@@ -65,4 +67,12 @@ export async function signInUser(email: string, password: string) {
   }
 
   redirect('/dashboard');
+}
+
+export async function forgotAccount(email: string) {
+  const foundUser = await db.query.user.findFirst({
+    where: (user, { eq }) => eq(user.email, email),
+  });
+
+  return !!foundUser;
 }
