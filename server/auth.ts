@@ -3,7 +3,6 @@
 import { db } from '@/db';
 import { auth } from '@/lib/auth';
 import { APIError } from 'better-auth';
-import { eq } from 'drizzle-orm';
 import { redirect } from 'next/navigation';
 
 export async function signUpUser(

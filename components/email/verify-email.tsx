@@ -7,7 +7,6 @@ import {
   Section,
   Text,
   Button,
-  Hr,
   Tailwind,
 } from '@react-email/components';
 
@@ -48,8 +47,8 @@ const AccountVerificationEmail = ({
               </Section>
 
               <Text className="text-[14px] text-gray-600 mb-[24px] mt-0">
-                If the button above doesn't work, you can also copy and paste
-                the following link into your browser:
+                If the button above doesn&apos;t work, you can also copy and
+                paste the following link into your browser:
               </Text>
 
               <Text className="text-[14px] text-blue-600 mb-[32px] mt-0 break-all">

@@ -2,7 +2,6 @@
 
 import {
   Field,
-  FieldDescription,
   FieldError,
   FieldGroup,
   FieldLabel,
@@ -10,7 +9,7 @@ import {
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Controller, useForm } from 'react-hook-form';
-import { useEffect, useState, useTransition } from 'react';
+import { useEffect, useTransition } from 'react';
 import { toast } from 'sonner';
 import z from 'zod';
 import { forgotPasswordSchema } from '@/zod/auth-schema';

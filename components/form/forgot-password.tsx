@@ -3,23 +3,17 @@
 import { Button } from '@/components/ui/button';
 import {
   Field,
-  FieldDescription,
   FieldError,
   FieldGroup,
   FieldLabel,
 } from '@/components/ui/field';
 import { Input } from '@/components/ui/input';
 import { requestPasswordReset } from '@/lib/auth-client';
-import { forgotAccount } from '@/server/auth';
-import {
-  forgotAccountSchema,
-  forgotPasswordEmailSchema,
-  forgotPasswordSchema,
-} from '@/zod/auth-schema';
+import { forgotPasswordEmailSchema } from '@/zod/auth-schema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Loader2 } from 'lucide-react';
-import { useRouter, useSearchParams } from 'next/navigation';
-import { useState, useTransition } from 'react';
+import { useSearchParams } from 'next/navigation';
+import { useTransition } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import z from 'zod';
@@ -33,10 +27,9 @@ export default function ForgotPasswordForm() {
       email: email,
     },
   });
-  const [message, setMessage] = useState<string>('');
   const [isPending, startTransition] = useTransition();
 
-  const onSubmit = (data: z.infer<typeof forgotPasswordEmailSchema>) => {
+  const onSubmit = () => {
     startTransition(async () => {
       const { error } = await requestPasswordReset({
         email: email,
@@ -83,7 +76,6 @@ export default function ForgotPasswordForm() {
               'Send Reset Link'
             )}
           </Button>
-          {message && <FieldDescription>{message}</FieldDescription>}
         </Field>
       </FieldGroup>
     </form>

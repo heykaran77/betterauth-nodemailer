@@ -24,17 +24,15 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import z from 'zod';
 import Link from 'next/link';
 import { signUpUser } from '@/server/auth';
-import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 import { useTransition } from 'react';
 import { Loader2 } from 'lucide-react';
-import { sendVerificationEmail, signInWithGoogle } from '@/lib/auth-client';
+import { signInWithGoogle } from '@/lib/auth-client';
 
 export function SignupForm({
   className,
   ...props
 }: React.ComponentProps<'div'>) {
-  const router = useRouter();
   const form = useForm<z.infer<typeof signUpSchema>>({
     resolver: zodResolver(signUpSchema),
     defaultValues: {

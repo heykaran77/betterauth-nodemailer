@@ -61,8 +61,8 @@ const PasswordResetEmail = ({
             {/* Alternative Link */}
             <Section className="mb-[32px]">
               <Text className="text-[14px] text-gray-600 leading-[20px] mb-[8px]">
-                If the button above doesn't work, copy and paste this link into
-                your browser:
+                If the button above doesn&apos;t work, copy and paste this link
+                into your browser:
               </Text>
               <Link
                 href={resetLink}
